@@ -47,9 +47,8 @@ class ApiController extends Controller
     {
         $talk = MeetupTalk::where('uuid',$uuid);
         $talk->update($request->all());
-
-        return response()->json($talk);
-    }
+        return response()->json($talk->get());
+    }   
 
     /**
      * @param Request $request
