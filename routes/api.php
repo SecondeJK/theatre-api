@@ -17,7 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/all', 'ApiController@index');
-Route::get('/show/{uuid}', 'ApiController@index');
-Route::get('/delete/{uuid}', 'ApiController@delete');
-Route::get('/update/{uuid}', 'ApiController@update');
+Route::group(['prefix' => 'talks'], function() {
+    Route::get('/index', 'ApiController@index');
+    Route::get('/show/{uuid}', 'ApiController@show');
+    Route::get('/delete/{uuid}', 'ApiController@delete');
+    Route::get('/update/{uuid}', 'ApiController@update');
+});

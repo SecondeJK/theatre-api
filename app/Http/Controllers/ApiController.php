@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\MeetupTalk;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
     public function index(Request $request)
     {
+        $payload = MeetupTalk::all();
         return response()->json(['valid' => true]);
     }
 
