@@ -9,6 +9,8 @@ class MeetupTalk extends Model
 {
     public $timestamps = false;
 
+    public $hidden = ['id'];
+
     public function save(array $options = [])
     {
         // check if this has a uuid, assign it one if it doesn't

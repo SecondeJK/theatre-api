@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'talks'], function() {
     Route::get('/index', 'ApiController@index');
     Route::get('/show/{uuid}', 'ApiController@show');
-    Route::get('/delete/{uuid}', 'ApiController@delete');
-    Route::get('/update/{uuid}', 'ApiController@update');
+    Route::delete('/delete/{uuid}', 'ApiController@delete');
+    Route::put('/update/{uuid}', 'ApiController@update');
+    Route::post('/create', 'ApiController@store');
 });
