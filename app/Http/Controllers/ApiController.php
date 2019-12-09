@@ -5,8 +5,17 @@ namespace App\Http\Controllers;
 use App\MeetupTalk;
 use Illuminate\Http\Request;
 
+/**
+ * @OA\Info(title="Theatre API with OpenAPI docs", version="0.1")
+ */
 class ApiController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/api/talks/index"
+     *     @OA\Response(response="200", description="Show all talks")
+     * )
+     */
     public function index(Request $request)
     {
         $payload = MeetupTalk::all();
@@ -14,9 +23,10 @@ class ApiController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param $uuid
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/talks/show/{id}",
+     *     @OA\Response(response="200", description="Show talk by UUID")
+     * )
      */
     public function show(Request $request, $uuid)
     {
@@ -30,8 +40,10 @@ class ApiController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
+     * @OA\Post(
+     *     path="/api/talks/create",
+     *     @OA\Response(response="200", description="Create talk from payload")
+     * )
      */
     public function store(Request $request)
     {
@@ -39,21 +51,23 @@ class ApiController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param $uuid
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Put(
+     *     path="/api/talks/update/{id}",
+     *     @OA\Response(response="200", description="update talk from payload by UUID")
+     * )
      */
     public function update(Request $request, $uuid)
     {
         $talk = MeetupTalk::where('uuid',$uuid);
         $talk->update($request->all());
         return response()->json($talk->get());
-    }   
+    }
 
     /**
-     * @param Request $request
-     * @param $uuid
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @OA\Delete(
+     *     path="/api/talks/delete/{id}",
+     *     @OA\Response(response="200", description="Delete talk by UUID")
+     * )
      */
     public function delete(Request $request, $uuid)
     {
