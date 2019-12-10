@@ -12,7 +12,7 @@ class ApiController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/talks/index"
+     *     path="/api/talks/index",
      *     @OA\Response(response="200", description="Show all talks")
      * )
      */
